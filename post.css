@@ -451,3 +451,476 @@
   .page-container .post-body { padding: 1.25rem; }
   .page-header { padding: 1.5rem 1.25rem; }
 }
+
+
+/* ============================================================
+   DARK GAMING THEME — .single-post content styles
+   GamingZone | Roblox & Free Fire 2026
+   ============================================================ */
+ 
+/* ── Texto base ─────────────────────────────────────────────── */
+.single-post {
+  color: var(--c-text);
+  background-color: transparent;
+}
+ 
+.single-post h1,
+.single-post h2,
+.single-post h3,
+.single-post h4,
+.single-post h5,
+.single-post h6 {
+  color: var(--c-heading);
+  margin-top: 1.6em;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.02em;
+}
+ 
+.single-post p {
+  color: var(--c-text);
+  background-color: transparent;
+  line-height: 1.75;
+}
+ 
+.single-post a {
+  color: var(--c-ff);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+ 
+.single-post a:hover {
+  color: var(--c-rbx);
+  border-bottom-color: var(--c-rbx);
+}
+ 
+/* ── Separadores ────────────────────────────────────────────── */
+.single-post hr {
+  border: none;
+  border-top: 1px solid var(--c-border);
+  margin: 2rem 0;
+  background-color: transparent;
+}
+ 
+/* ── Tablas ─────────────────────────────────────────────────── */
+.single-post table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  margin: 1.5rem 0;
+  color: var(--c-text);
+}
+ 
+.single-post table thead {
+  background-color: var(--c-surface-2);
+}
+ 
+.single-post table thead th {
+  color: var(--c-heading);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  border-bottom: 1px solid var(--c-border);
+  background-color: transparent;
+}
+ 
+.single-post table tbody tr {
+  background-color: transparent;
+  border-bottom: 1px solid var(--c-border);
+  transition: background-color 0.15s ease;
+}
+ 
+.single-post table tbody tr:last-child {
+  border-bottom: none;
+}
+ 
+.single-post table tbody tr:nth-child(even) {
+  background-color: var(--c-surface-2);
+}
+ 
+.single-post table tbody tr:hover {
+  background-color: color-mix(in srgb, var(--c-ff) 8%, var(--c-surface));
+}
+ 
+.single-post table td {
+  padding: 0.65rem 1rem;
+  background-color: transparent;
+  color: var(--c-text);
+  vertical-align: middle;
+}
+ 
+.single-post table tfoot td,
+.single-post table tfoot th {
+  padding: 0.65rem 1rem;
+  background-color: var(--c-surface-2);
+  color: var(--c-heading);
+  font-weight: 600;
+  border-top: 1px solid var(--c-border);
+}
+ 
+/* ── Blockquote ─────────────────────────────────────────────── */
+.single-post blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background-color: var(--c-surface);
+  border-left: 4px solid var(--c-ff);
+  border-radius: 0 6px 6px 0;
+  color: var(--c-text);
+  font-style: italic;
+  position: relative;
+}
+ 
+.single-post blockquote p {
+  margin: 0;
+  background-color: transparent;
+}
+ 
+.single-post blockquote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--c-ff);
+  font-style: normal;
+  font-weight: 600;
+}
+ 
+/* ── Código ─────────────────────────────────────────────────── */
+.single-post code {
+  background-color: var(--c-surface-2);
+  color: var(--c-ff);
+  padding: 0.15em 0.45em;
+  border-radius: 4px;
+  font-size: 0.87em;
+  font-family: "Fira Code", "Cascadia Code", "Consolas", monospace;
+  border: 1px solid var(--c-border);
+}
+ 
+.single-post pre {
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  position: relative;
+}
+ 
+.single-post pre code {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  color: var(--c-text);
+  font-size: 0.9em;
+  line-height: 1.7;
+}
+ 
+/* ── Listas ─────────────────────────────────────────────────── */
+.single-post ul,
+.single-post ol {
+  background-color: transparent;
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+  color: var(--c-text);
+}
+ 
+.single-post ul li,
+.single-post ol li {
+  margin-bottom: 0.4rem;
+  background-color: transparent;
+  line-height: 1.7;
+}
+ 
+.single-post ul li::marker {
+  color: var(--c-ff);
+}
+ 
+.single-post ol li::marker {
+  color: var(--c-rbx);
+  font-weight: 700;
+}
+ 
+/* Lista estilo "gamer card" */
+.single-post ul.gamer-list {
+  list-style: none;
+  padding-left: 0;
+}
+ 
+.single-post ul.gamer-list li {
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-left: 3px solid var(--c-ff);
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  margin-bottom: 0.5rem;
+  transition: border-left-color 0.2s ease, background-color 0.2s ease;
+}
+ 
+.single-post ul.gamer-list li:hover {
+  border-left-color: var(--c-rbx);
+  background-color: var(--c-surface-2);
+}
+ 
+/* ── Formularios ─────────────────────────────────────────────── */
+.single-post form {
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+ 
+.single-post fieldset {
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  background-color: transparent;
+  margin-bottom: 1rem;
+}
+ 
+.single-post legend {
+  color: var(--c-ff);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0 0.4rem;
+  background-color: var(--c-surface);
+}
+ 
+.single-post label {
+  display: block;
+  color: var(--c-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.03em;
+}
+ 
+.single-post input[type="text"],
+.single-post input[type="email"],
+.single-post input[type="password"],
+.single-post input[type="number"],
+.single-post input[type="search"],
+.single-post input[type="url"],
+.single-post input[type="tel"],
+.single-post input[type="date"],
+.single-post select,
+.single-post textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  margin-bottom: 0.75rem;
+}
+ 
+.single-post input:focus,
+.single-post select:focus,
+.single-post textarea:focus {
+  border-color: var(--c-ff);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-ff) 18%, transparent);
+}
+ 
+.single-post textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+ 
+.single-post select option {
+  background-color: var(--c-surface);
+  color: var(--c-text);
+}
+ 
+.single-post input[type="checkbox"],
+.single-post input[type="radio"] {
+  accent-color: var(--c-ff);
+  width: auto;
+  margin-right: 0.4rem;
+  cursor: pointer;
+}
+ 
+.single-post input[type="submit"],
+.single-post input[type="button"],
+.single-post input[type="reset"],
+.single-post button {
+  background-color: var(--c-ff);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+ 
+.single-post input[type="submit"]:hover,
+.single-post input[type="button"]:hover,
+.single-post button:hover {
+  background-color: color-mix(in srgb, var(--c-ff) 80%, #fff);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--c-ff) 40%, transparent);
+  transform: translateY(-1px);
+}
+ 
+.single-post input[type="reset"]:hover {
+  background-color: var(--c-rbx);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--c-rbx) 40%, transparent);
+}
+ 
+/* ── Imágenes ────────────────────────────────────────────────── */
+.single-post img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--c-border);
+  background-color: var(--c-surface);
+  display: block;
+}
+ 
+.single-post figure {
+  margin: 1.5rem 0;
+  background-color: transparent;
+}
+ 
+.single-post figcaption {
+  text-align: center;
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--c-text) 65%, transparent);
+  margin-top: 0.4rem;
+  font-style: italic;
+  background-color: transparent;
+}
+ 
+/* ── Cajas de aviso / callout ───────────────────────────────── */
+.single-post .callout,
+.single-post .tip,
+.single-post .warning,
+.single-post .info,
+.single-post .note {
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-left: 4px solid var(--c-rbx);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  color: var(--c-text);
+}
+ 
+.single-post .warning {
+  border-left-color: var(--c-ff);
+}
+ 
+.single-post .tip {
+  border-left-color: var(--c-rbx);
+}
+ 
+/* ── Details / Summary ──────────────────────────────────────── */
+.single-post details {
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+}
+ 
+.single-post summary {
+  color: var(--c-heading);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  outline: none;
+}
+ 
+.single-post summary::before {
+  content: "▶";
+  font-size: 0.65rem;
+  color: var(--c-ff);
+  transition: transform 0.2s ease;
+}
+ 
+.single-post details[open] summary::before {
+  transform: rotate(90deg);
+}
+ 
+.single-post details[open] {
+  padding-bottom: 1rem;
+}
+ 
+/* ── Badges / etiquetas inline ──────────────────────────────── */
+.single-post .badge,
+.single-post .tag {
+  display: inline-block;
+  background-color: var(--c-surface-2);
+  color: var(--c-ff);
+  border: 1px solid var(--c-ff);
+  border-radius: 4px;
+  padding: 0.15em 0.55em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+ 
+.single-post .badge.rbx,
+.single-post .tag.rbx {
+  color: var(--c-rbx);
+  border-color: var(--c-rbx);
+}
+ 
+/* ── Mark / resaltado ───────────────────────────────────────── */
+.single-post mark {
+  background-color: color-mix(in srgb, var(--c-ff) 25%, transparent);
+  color: var(--c-heading);
+  border-radius: 3px;
+  padding: 0.05em 0.3em;
+}
+ 
+/* ── Kbd ────────────────────────────────────────────────────── */
+.single-post kbd {
+  display: inline-block;
+  background-color: var(--c-surface-2);
+  color: var(--c-text);
+  border: 1px solid var(--c-border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 0.1em 0.45em;
+  font-family: monospace;
+  font-size: 0.83em;
+}
+ 
+/* ── Scrollbar dentro de pre ────────────────────────────────── */
+.single-post pre::-webkit-scrollbar {
+  height: 5px;
+}
+ 
+.single-post pre::-webkit-scrollbar-track {
+  background: var(--c-surface);
+}
+ 
+.single-post pre::-webkit-scrollbar-thumb {
+  background: var(--c-border);
+  border-radius: 3px;
+}
+ 
+.single-post pre::-webkit-scrollbar-thumb:hover {
+  background: var(--c-ff);
+}
