@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa del Sitio | GamingZone</title>
+  <meta name="description" content="Mapa completo del sitio GamingZone. Encuentra todas nuestras guías, códigos y artículos sobre Free Fire y Roblox." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://kevinyesidoyola-web.github.io/RBLXff/sitemap.html" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Variables ── */
+    :root {
+      --bg:        #0b0d14;
+      --surface:   #11141c;
+      --card:      #161a26;
+      --border:    #1f2535;
+      --ff:        #ff4b2b;
+      --ff-dim:    #7a1f10;
+      --rblx:      #00b4d8;
+      --rblx-dim:  #004f60;
+      --accent:    #f5a623;
+      --text:      #e8eaf0;
+      --muted:     #6b7280;
+      --font-head: 'Orbitron', sans-serif;
+      --font-body: 'Rajdhani', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,13,20,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .logo {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+
+    .logo span { color: var(--ff); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      padding: 5rem 1.5rem 3.5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -40%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(255,75,43,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ff);
+      border: 1px solid var(--ff-dim);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--ff);
+    }
+
+    .hero p {
+      max-width: 520px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    /* ── LAYOUT ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* ── SECTION BLOCK ── */
+    .section {
+      margin-bottom: 3rem;
+      animation: fadeUp .5s ease both;
+    }
+
+    .section:nth-child(2) { animation-delay: .05s; }
+    .section:nth-child(3) { animation-delay: .10s; }
+    .section:nth-child(4) { animation-delay: .15s; }
+    .section:nth-child(5) { animation-delay: .20s; }
+    .section:nth-child(6) { animation-delay: .25s; }
+    .section:nth-child(7) { animation-delay: .30s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-icon {
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .section-count {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--border);
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+    }
+
+    /* ── LINK GRID ── */
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.6rem;
+    }
+
+    .site-link {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.75rem 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.93rem;
+      font-weight: 500;
+      transition: background .2s, border-color .2s, transform .15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-link::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      border-radius: 999px 0 0 999px;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .site-link:hover {
+      background: var(--surface);
+      transform: translateX(4px);
+    }
+
+    .site-link:hover::before { opacity: 1; }
+
+    /* Color accents per category */
+    .ff   .site-link::before, .ff   .section-title { color: var(--ff);   }
+    .ff   .site-link::before                        { background: var(--ff); }
+    .ff   .site-link:hover                          { border-color: var(--ff-dim); }
+
+    .rblx .site-link::before, .rblx .section-title { color: var(--rblx); }
+    .rblx .site-link::before                        { background: var(--rblx); }
+    .rblx .site-link:hover                          { border-color: var(--rblx-dim); }
+
+    .gen  .site-link::before                        { background: var(--accent); }
+    .gen  .site-link:hover                          { border-color: #5a3a00; }
+    .gen  .section-title                            { color: var(--accent); }
+
+    .info .site-link::before                        { background: var(--muted); }
+    .info .site-link:hover                          { border-color: #2d3447; }
+
+    .link-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .ff   .link-dot { background: var(--ff); }
+    .rblx .link-dot { background: var(--rblx); }
+    .gen  .link-dot { background: var(--accent); }
+    .info .link-dot { background: var(--muted); }
+
+    .arrow {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 0.85rem;
+      transition: color .2s;
+    }
+
+    .site-link:hover .arrow { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* ── Responsive nav ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="logo" href="https://kevinyesidoyola-web.github.io/RBLXff/index.html">
+        🎮 Gaming<span>Zone</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="https://kevinyesidoyola-web.github.io/RBLXff/index.html">Inicio</a></li>
+        <li><a href="https://kevinyesidoyola-web.github.io/RBLXff/codigos-free-fire-abril-2026.html">Códigos FF</a></li>
+        <li><a href="https://kevinyesidoyola-web.github.io/RBLXff/como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a></li>
+        <li><a href="https://kevinyesidoyola-web.github.io/RBLXff/eventos.html">Eventos</a></li>
+        <li><a href="https://kevinyesidoyola-web.github.io/RBLXff/seguridad.html">Seguridad</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-label">Navegación completa</div>
+    <h1>Mapa del <em>Sitio</em></h1>
+    <p>Todas las páginas de GamingZone organizadas por categoría. Encuentra rápidamente lo que buscas.</p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- 🔴 FREE FIRE -->
+    <section class="section ff">
+      <div class="section-header">
+        <span class="section-icon">🔴</span>
+        <span class="section-title">Free Fire</span>
+        <span class="section-count">5 páginas</span>
+      </div>
+      <div class="link-grid">
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/codigos-free-fire-abril-2026.html">
+          <span class="link-dot"></span>
+          Códigos Free Fire activos – Abril 2026
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/actualizacion-free-fire-evo-temporada-2026.html">
+          <span class="link-dot"></span>
+          Actualización EVO Season 2026
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/como-proteger-cuenta-free-fire-hackers-2026.html">
+          <span class="link-dot"></span>
+          Cómo proteger tu cuenta de hackers
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/evento-colaboracion-free-fire-2026-recompensas.html">
+          <span class="link-dot"></span>
+          Evento de colaboración 2026 – Recompensas
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/diamantes-free-fire-precio-paquetes-conviene-2026.html">
+          <span class="link-dot"></span>
+          Guía de diamantes: precios y paquetes
+          <span class="arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 🔵 ROBLOX -->
+    <section class="section rblx">
+      <div class="section-header">
+        <span class="section-icon">🔵</span>
+        <span class="section-title">Roblox</span>
+        <span class="section-count">4 páginas</span>
+      </div>
+      <div class="link-grid">
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/como-conseguir-robux-gratis-de-forma-segura-2026.html">
+          <span class="link-dot"></span>
+          Cómo conseguir Robux gratis y seguro
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/mejores-juegos-roblox-2026-para-jugar-con-amigos.html">
+          <span class="link-dot"></span>
+          Top 10 juegos de Roblox en 2026
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/roblox-parental-controls-guia-padres-2026.html">
+          <span class="link-dot"></span>
+          Controles parentales – Guía para padres
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/roblox-vs-free-fire-cual-es-mejor-para-ninos-2026.html">
+          <span class="link-dot"></span>
+          Roblox vs Free Fire para niños 2026
+          <span class="arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ⚔️ COMPARATIVAS & EVENTOS -->
+    <section class="section gen">
+      <div class="section-header">
+        <span class="section-icon">⚔️</span>
+        <span class="section-title">Comparativas & Eventos</span>
+        <span class="section-count">2 páginas</span>
+      </div>
+      <div class="link-grid">
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/free-fire-vs-roblox-shooters-comparativa-2026.html">
+          <span class="link-dot"></span>
+          Free Fire vs Shooters de Roblox 2026
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/eventos.html">
+          <span class="link-dot"></span>
+          Eventos activos
+          <span class="arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 🛡️ SEGURIDAD -->
+    <section class="section gen">
+      <div class="section-header">
+        <span class="section-icon">🛡️</span>
+        <span class="section-title">Seguridad Online</span>
+        <span class="section-count">1 página</span>
+      </div>
+      <div class="link-grid">
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/seguridad.html">
+          <span class="link-dot"></span>
+          Seguridad y consejos para jugadores
+          <span class="arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ℹ️ INFORMACIÓN LEGAL -->
+    <section class="section info">
+      <div class="section-header">
+        <span class="section-icon">ℹ️</span>
+        <span class="section-title">Legal & Información</span>
+        <span class="section-count">5 páginas</span>
+      </div>
+      <div class="link-grid">
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/sobre-nosotros.html">
+          <span class="link-dot"></span>
+          Sobre Nosotros
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/contacto.html">
+          <span class="link-dot"></span>
+          Contacto
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/politica-de-privacidad.html">
+          <span class="link-dot"></span>
+          Política de Privacidad
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/politica-de-cookies.html">
+          <span class="link-dot"></span>
+          Política de Cookies
+          <span class="arrow">›</span>
+        </a>
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/aviso-legal.html">
+          <span class="link-dot"></span>
+          Aviso Legal
+          <span class="arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 🏠 INICIO -->
+    <section class="section info">
+      <div class="section-header">
+        <span class="section-icon">🏠</span>
+        <span class="section-title">Página Principal</span>
+        <span class="section-count">1 página</span>
+      </div>
+      <div class="link-grid">
+        <a class="site-link" href="https://kevinyesidoyola-web.github.io/RBLXff/index.html">
+          <span class="link-dot"></span>
+          Inicio – GamingZone
+          <span class="arrow">›</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 GamingZone. Todos los derechos reservados. &nbsp;·&nbsp;
+      <a href="https://kevinyesidoyola-web.github.io/RBLXff/index.html">Inicio</a> &nbsp;·&nbsp;
+      <a href="https://kevinyesidoyola-web.github.io/RBLXff/politica-de-privacidad.html">Privacidad</a> &nbsp;·&nbsp;
+      <a href="https://kevinyesidoyola-web.github.io/RBLXff/contacto.html">Contacto</a>
+    </p>
+  </footer>
+
+</body>
+</html>
