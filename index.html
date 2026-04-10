@@ -12,9 +12,30 @@
   <meta property="og:title" content="GamingZone | Tu Portal Definitivo de Roblox y Free Fire" />
   <meta property="og:description" content="Guías, códigos, eventos y análisis de Free Fire y Roblox. Actualizado diariamente en 2026." />
   <meta property="og:image" content="https://placehold.co/1200x630/11141c/ff4b2b?text=GamingZone" />
-  <meta property="og:url" content="https://www.tusitio.com" />
+  <meta property="og:url" content="https://tuusuario.github.io/gamingzone/" />
 
   <title>GamingZone | Tu Portal Definitivo de Roblox y Free Fire 2026</title>
+
+  <!--
+    ══════════════════════════════════════════════════════════════
+    ETIQUETA <base> — INSTRUCCIONES DE USO
+    ══════════════════════════════════════════════════════════════
+
+    CASO A: Tu repo se llama "usuario.github.io" (raíz del dominio)
+    → Elimina la etiqueta <base> completamente. No la necesitas.
+    → Ejemplo: https://miusuario.github.io/
+
+    CASO B: Tu repo se llama "gamingzone" o cualquier otro nombre
+    → Descomenta la línea de abajo y reemplaza "gamingzone"
+       con el nombre EXACTO de tu repositorio en GitHub.
+    → Ejemplo: https://miusuario.github.io/gamingzone/
+
+    <base href="/gamingzone/">
+
+    IMPORTANTE: Con <base> activada, todos los href="algo.html"
+    se resuelven como /gamingzone/algo.html automáticamente.
+    ══════════════════════════════════════════════════════════════
+  -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,6 +43,10 @@
 
   <link rel="icon" type="image/png" href="img/favicon.png" />
 
+  <!--
+    style.css usa ruta relativa simple.
+    Funciona en local y en GitHub Pages en cualquier configuración.
+  -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -29,6 +54,10 @@
 
   <header class="site-header">
     <div class="container header-inner">
+      <!--
+        ✅ CORRECTO: href="index.html" — relativo, sin "/" inicial.
+        ❌ INCORRECTO: href="/index.html" — falla si el repo está en subdirectorio.
+      -->
       <a href="index.html" class="logo" aria-label="GamingZone - Inicio">
         <span class="logo-icon">🎮</span>
         <span class="logo-text">Gaming<em>Zone</em></span>
@@ -40,11 +69,42 @@
 
       <nav class="main-nav" id="main-nav" role="navigation" aria-label="Navegación principal">
         <ul>
-          <li><a href="index.html" aria-current="page">Inicio</a></li>
-          <li><a href="codigos-free-fire-abril-2026.html">Códigos FF</a></li>
-          <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a></li>
-          <li><a href="#">Eventos</a></li>
-          <li><a href="#">Seguridad</a></li>
+          <!--
+            REGLAS APLICADAS EN CADA ENLACE:
+            1. Minúsculas exactas — GitHub Pages es case-sensitive (Linux).
+               "Codigos-FF.html" ≠ "codigos-ff.html" → 404 garantizado.
+            2. Sin "/" inicial — rutas relativas al archivo actual.
+            3. Extensión .html explícita — necesaria para HTML estático sin servidor.
+            4. El nombre del archivo en href debe ser IDÉNTICO al nombre en disco.
+          -->
+          <li>
+            <a href="index.html" aria-current="page">Inicio</a>
+          </li>
+          <li>
+            <!-- Archivo en disco: codigos-free-fire-abril-2026.html -->
+            <a href="codigos-free-fire-abril-2026.html">Códigos FF</a>
+          </li>
+          <li>
+            <!-- Archivo en disco: como-conseguir-robux-gratis-de-forma-segura-2026.html -->
+            <a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a>
+          </li>
+          <li>
+            <!--
+              ANTES: href="#" → no navega a ningún lado.
+              AHORA: apunta a la página real de eventos.
+              Archivo en disco: evento-colaboracion-free-fire-2026-recompensas.html
+              (O crea una página index de eventos; ver estructura alternativa abajo)
+            -->
+            <a href="evento-colaboracion-free-fire-2026-recompensas.html">Eventos</a>
+          </li>
+          <li>
+            <!--
+              ANTES: href="#" → roto.
+              AHORA: apunta a la guía de seguridad existente.
+              Archivo en disco: como-proteger-cuenta-free-fire-hackers-2026.html
+            -->
+            <a href="como-proteger-cuenta-free-fire-hackers-2026.html">Seguridad</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -76,6 +136,17 @@
         <h2 id="articles-heading" class="section-title">Últimos artículos</h2>
 
         <div class="articles-grid">
+
+          <!--
+            ═══════════════════════════════════════════════════════════
+            TARJETAS DE ARTÍCULOS — CHECKLIST DE CORRECCIONES
+            ═══════════════════════════════════════════════════════════
+            ✅ href sin "/" inicial
+            ✅ Nombre de archivo en minúsculas, idéntico al archivo en disco
+            ✅ Extensión .html explícita
+            ✅ Las imágenes usan src relativo (o URL absoluta de placeholder)
+            ═══════════════════════════════════════════════════════════
+          -->
 
           <a href="free-fire-vs-roblox-shooters-comparativa-2026.html" class="article-card" aria-label="Leer artículo: Free Fire vs Shooters de Roblox">
             <div class="card-image-wrap">
@@ -227,7 +298,10 @@
             </div>
           </a>
 
-        </div></section><aside class="sidebar" aria-label="Barra lateral">
+        </div>
+      </section>
+
+      <aside class="sidebar" aria-label="Barra lateral">
 
         <div class="widget widget--popular">
           <h2 class="widget-title">🔥 Lo más leído</h2>
@@ -268,13 +342,17 @@
         <div class="widget widget--categories">
           <h2 class="widget-title">📂 Categorías</h2>
           <ul class="categories-list">
-            <li><a href="#"><span class="cat-icon">🔴</span> Free Fire <span class="cat-count">42</span></a></li>
-            <li><a href="#"><span class="cat-icon">🔵</span> Roblox <span class="cat-count">38</span></a></li>
-            <li><a href="#"><span class="cat-icon">🎁</span> Códigos y Regalos <span class="cat-count">29</span></a></li>
-            <li><a href="#"><span class="cat-icon">📖</span> Guías y Tutoriales <span class="cat-count">24</span></a></li>
-            <li><a href="#"><span class="cat-icon">🎉</span> Eventos <span class="cat-count">17</span></a></li>
-            <li><a href="#"><span class="cat-icon">🛡️</span> Seguridad Online <span class="cat-count">12</span></a></li>
-            <li><a href="#"><span class="cat-icon">⚔️</span> Comparativas <span class="cat-count">8</span></a></li>
+            <!--
+              Si creas páginas índice por categoría, apunta a ellas.
+              Mientras no existan, usa el artículo más representativo de cada una.
+            -->
+            <li><a href="codigos-free-fire-abril-2026.html"><span class="cat-icon">🔴</span> Free Fire <span class="cat-count">42</span></a></li>
+            <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">🔵</span> Roblox <span class="cat-count">38</span></a></li>
+            <li><a href="codigos-free-fire-abril-2026.html"><span class="cat-icon">🎁</span> Códigos y Regalos <span class="cat-count">29</span></a></li>
+            <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">📖</span> Guías y Tutoriales <span class="cat-count">24</span></a></li>
+            <li><a href="evento-colaboracion-free-fire-2026-recompensas.html"><span class="cat-icon">🎉</span> Eventos <span class="cat-count">17</span></a></li>
+            <li><a href="como-proteger-cuenta-free-fire-hackers-2026.html"><span class="cat-icon">🛡️</span> Seguridad Online <span class="cat-count">12</span></a></li>
+            <li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html"><span class="cat-icon">⚔️</span> Comparativas <span class="cat-count">8</span></a></li>
           </ul>
         </div>
 
@@ -285,7 +363,9 @@
           <a href="#" class="btn btn--primary btn--full">Activar notificaciones</a>
         </div>
 
-      </aside></div></main>
+      </aside>
+    </div>
+  </main>
 
   <footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
@@ -306,7 +386,7 @@
           <li><a href="politica-de-privacidad.html">Política de Privacidad</a></li>
           <li><a href="politica-de-cookies.html">Política de Cookies</a></li>
           <li><a href="aviso-legal.html">Aviso Legal</a></li>
-          <li><a href="#">Mapa del Sitio</a></li>
+          <li><a href="sitemap.xml">Mapa del Sitio</a></li>
         </ul>
       </nav>
 
@@ -315,9 +395,9 @@
         <ul>
           <li><a href="codigos-free-fire-abril-2026.html">Códigos Free Fire</a></li>
           <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">Guías Roblox</a></li>
-          <li><a href="#">Eventos</a></li>
-          <li><a href="#">Seguridad</a></li>
-          <li><a href="#">Comparativas</a></li>
+          <li><a href="evento-colaboracion-free-fire-2026-recompensas.html">Eventos</a></li>
+          <li><a href="como-proteger-cuenta-free-fire-hackers-2026.html">Seguridad</a></li>
+          <li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html">Comparativas</a></li>
         </ul>
       </nav>
 
