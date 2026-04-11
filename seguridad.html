@@ -12,7 +12,7 @@
   <meta property="og:title" content="Seguridad Online | GamingZone – Free Fire y Roblox 2026" />
   <meta property="og:description" content="Cómo evitar baneos, activar 2FA y proteger tu cuenta de Free Fire y Roblox. Guías actualizadas para 2026." />
   <meta property="og:image" content="https://placehold.co/1200x630/11141c/ff4b2b?text=GamingZone" />
-  <meta property="og:url" content="https://www.gamingzone.es/seguridad.html" />
+  <meta property="og:url" content="https://www.tusitio.com/seguridad.html" />
 
   <title>Seguridad Online 2026 – Baneos y Verificación | GamingZone</title>
 
@@ -174,13 +174,13 @@
         <div class="widget widget--categories">
           <h2 class="widget-title">📂 Categorías</h2>
           <ul class="categories-list">
-            <li><a href="codigos-free-fire-abril-2026.html"><span class="cat-icon">🔴</span> Free Fire <span class="cat-count">42</span></a></li>
-            <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">🔵</span> Roblox <span class="cat-count">38</span></a></li>
-            <li><a href="codigos-free-fire-abril-2026.html"><span class="cat-icon">🎁</span> Códigos y Regalos <span class="cat-count">29</span></a></li>
-            <li><a href="como-conseguir-robux-gratis-de-forma-segura-2026.html"><span class="cat-icon">📖</span> Guías y Tutoriales <span class="cat-count">24</span></a></li>
+            <li><a href="#"><span class="cat-icon">🔴</span> Free Fire <span class="cat-count">42</span></a></li>
+            <li><a href="#"><span class="cat-icon">🔵</span> Roblox <span class="cat-count">38</span></a></li>
+            <li><a href="#"><span class="cat-icon">🎁</span> Códigos y Regalos <span class="cat-count">29</span></a></li>
+            <li><a href="#"><span class="cat-icon">📖</span> Guías y Tutoriales <span class="cat-count">24</span></a></li>
             <li><a href="eventos.html"><span class="cat-icon">🎉</span> Eventos <span class="cat-count">17</span></a></li>
             <li><a href="seguridad.html"><span class="cat-icon">🛡️</span> Seguridad Online <span class="cat-count">12</span></a></li>
-            <li><a href="free-fire-vs-roblox-shooters-comparativa-2026.html"><span class="cat-icon">⚔️</span> Comparativas <span class="cat-count">8</span></a></li>
+            <li><a href="#"><span class="cat-icon">⚔️</span> Comparativas <span class="cat-count">8</span></a></li>
           </ul>
         </div>
 
@@ -246,6 +246,39 @@
       });
     })();
   </script>
+
+  <!-- ===== BANNER DE COOKIES – GamingZone ===== -->
+  <div id="cookieBanner" role="dialog" aria-label="Aviso de cookies" aria-live="polite" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:#0f1115;border-top:3px solid #ff4b2b;padding:14px 28px;box-sizing:border-box;font-family:'Exo 2',sans-serif;transition:transform .35s ease,opacity .35s ease;">
+    <p style="color:#c8ccd4;font-size:14px;line-height:1.65;margin:0;flex:1;min-width:240px;">
+      🍪 <strong style="color:#fff;font-weight:700;">Aviso de cookies.</strong>
+      Usamos cookies propias y de Google AdSense para publicidad relevante.
+      Al navegar aceptas su uso según nuestra
+      <a href="politica-de-privacidad.html" style="color:#ff4b2b;text-decoration:underline;">Política de Privacidad</a>.
+    </p>
+    <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+      <button id="cookieEssential" style="background:transparent;border:1.5px solid rgba(200,204,212,.35);color:#c8ccd4;padding:10px 20px;border-radius:8px;font-family:'Exo 2',sans-serif;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:border-color .2s,color .2s;" onmouseover="this.style.borderColor='rgba(200,204,212,.7)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(200,204,212,.35)';this.style.color='#c8ccd4'">Solo esenciales</button>
+      <button id="cookieAccept" style="background:#ff4b2b;border:1.5px solid #ff4b2b;color:#fff;padding:10px 20px;border-radius:8px;font-family:'Exo 2',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s,transform .1s;" onmouseover="this.style.background='#e03a1e'" onmouseout="this.style.background='#ff4b2b'">Aceptar todo</button>
+    </div>
+  </div>
+  <style>
+    @media(max-width:600px){
+      #cookieBanner{flex-direction:column;align-items:flex-start;padding:16px 18px;gap:14px;}
+      #cookieBanner>div:last-child{width:100%;}
+      #cookieBanner button{flex:1;text-align:center;font-size:14px;padding:12px 10px;width:100%;}
+    }
+  </style>
+  <script>
+    (function(){
+      var K='cookieConsent',D=30;
+      function ok(){var s=localStorage.getItem(K);if(!s)return false;try{return(Date.now()-JSON.parse(s).ts)<D*864e5;}catch(e){return false;}}
+      function hide(){var b=document.getElementById('cookieBanner');if(b){b.style.transform='translateY(100%)';b.style.opacity='0';setTimeout(function(){b.style.display='none';},360);}}
+      function save(t){localStorage.setItem(K,JSON.stringify({type:t,ts:Date.now()}));}
+      if(ok()){hide();return;}
+      document.getElementById('cookieAccept').onclick=function(){save('all');hide();};
+      document.getElementById('cookieEssential').onclick=function(){save('essential');hide();};
+    })();
+  </script>
+  <!-- ===== FIN BANNER DE COOKIES ===== -->
 
 </body>
 </html>
