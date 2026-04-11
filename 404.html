@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>404 — GAME OVER | GamingZone</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Variables ─────────────────────────────────────── */
+    :root {
+      --bg:          #07090f;
+      --surface:     #0d1018;
+      --surface-2:   #131720;
+      --border:      #1c2333;
+      --ff:          #ff4b2b;
+      --ff-dim:      rgba(255, 75, 43, 0.18);
+      --rbx:         #00b4ff;
+      --rbx-dim:     rgba(0, 180, 255, 0.14);
+      --gold:        #f5c400;
+      --text:        #dde3f0;
+      --muted:       #5a6a82;
+      --font-hud:    'Orbitron', sans-serif;
+      --font-mono:   'Share Tech Mono', monospace;
+      --font-body:   'Exo 2', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+      padding: 2rem 1.25rem;
+    }
+
+    /* ─── Fondo: cuadrícula + scanlines ─────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 44px 44px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.08) 3px,
+        rgba(0, 0, 0, 0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── Orbs de luz de fondo ───────────────────────────── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(110px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb--ff {
+      width: 520px; height: 520px;
+      background: var(--ff);
+      opacity: 0.07;
+      top: -160px; left: -160px;
+      animation: driftA 14s ease-in-out infinite alternate;
+    }
+    .orb--rbx {
+      width: 420px; height: 420px;
+      background: var(--rbx);
+      opacity: 0.06;
+      bottom: -120px; right: -120px;
+      animation: driftB 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes driftA {
+      from { transform: translate(0, 0); }
+      to   { transform: translate(60px, 40px); }
+    }
+    @keyframes driftB {
+      from { transform: translate(0, 0); }
+      to   { transform: translate(-50px, -30px); }
+    }
+
+    /* ─── Contenedor principal ───────────────────────────── */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 680px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem 2.5rem 2.5rem;
+      text-align: center;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03),
+        0 24px 80px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+      animation: fadeUp 0.55s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Línea de acento superior */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 10%; right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--ff), var(--rbx), transparent);
+      border-radius: 999px;
+    }
+
+    /* ─── HUD: barra superior ────────────────────────────── */
+    .hud-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.25rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      animation: fadeUp 0.55s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .hud-logo {
+      font-family: var(--font-hud);
+      font-size: 0.85rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .hud-logo em { color: var(--ff); font-style: normal; }
+    .hud-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hud-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--ff);
+      box-shadow: 0 0 8px var(--ff);
+      animation: blink 1.2s step-end infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+
+    /* ─── Código 404 ─────────────────────────────────────── */
+    .error-code {
+      font-family: var(--font-hud);
+      font-size: clamp(5.5rem, 20vw, 9rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: transparent;
+      background: linear-gradient(135deg, #ff4b2b 0%, #f5c400 45%, #00b4ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      position: relative;
+      animation: fadeUp 0.55s 0.15s cubic-bezier(0.22,1,0.36,1) both;
+      text-shadow: none;
+      filter: drop-shadow(0 0 40px rgba(255,75,43,0.25));
+    }
+
+    /* Glitch effect en el 404 */
+    .error-code::before,
+    .error-code::after {
+      content: '404';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .error-code::before {
+      animation: glitchA 4s infinite;
+      clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+    }
+    .error-code::after {
+      animation: glitchB 4s infinite;
+      clip-path: polygon(0 60%, 100% 60%, 100% 75%, 0 75%);
+    }
+
+    @keyframes glitchA {
+      0%,90%,100%  { transform: translate(0); opacity: 0; }
+      91%          { transform: translate(-3px, 1px); opacity: 0.7; filter: hue-rotate(-30deg); }
+      93%          { transform: translate(3px, -1px); opacity: 0.7; }
+      95%          { transform: translate(0); opacity: 0; }
+    }
+    @keyframes glitchB {
+      0%,92%,100%  { transform: translate(0); opacity: 0; }
+      93%          { transform: translate(3px, 2px); opacity: 0.6; filter: hue-rotate(60deg); }
+      95%          { transform: translate(-2px, -1px); opacity: 0.6; }
+      97%          { transform: translate(0); opacity: 0; }
+    }
+
+    /* ─── Título y subtítulo ─────────────────────────────── */
+    .game-over {
+      font-family: var(--font-hud);
+      font-size: clamp(1.1rem, 4vw, 1.5rem);
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ff);
+      margin-top: 0.5rem;
+      animation: fadeUp 0.55s 0.2s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .tagline {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 480px;
+      margin-inline: auto;
+      animation: fadeUp 0.55s 0.25s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .tagline strong { color: var(--text); }
+
+    /* ─── Terminal de diagnóstico ────────────────────────── */
+    .terminal {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1.75rem 0;
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.9;
+      animation: fadeUp 0.55s 0.3s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .t-dot:nth-child(1) { background: #ff5f57; }
+    .t-dot:nth-child(2) { background: #febc2e; }
+    .t-dot:nth-child(3) { background: #28c840; }
+    .terminal-title {
+      margin-left: 4px;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+    .t-line { color: var(--muted); }
+    .t-line .t-prompt { color: var(--rbx); }
+    .t-line .t-cmd    { color: #fff; }
+    .t-line .t-err    { color: var(--ff); }
+    .t-line .t-ok     { color: #28c840; }
+    .t-line .t-warn   { color: var(--gold); }
+    .t-cursor {
+      display: inline-block;
+      width: 8px; height: 1em;
+      background: var(--rbx);
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+
+    /* ─── Buscador ───────────────────────────────────────── */
+    .search-block {
+      margin: 1.5rem 0;
+      animation: fadeUp 0.55s 0.35s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .search-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.08em;
+    }
+    .search-row {
+      display: flex;
+      background: var(--surface-2);
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      padding: 5px 5px 5px 18px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-row:focus-within {
+      border-color: var(--rbx);
+      box-shadow: 0 0 0 3px var(--rbx-dim), 0 4px 24px rgba(0,0,0,0.4);
+    }
+    .search-icon {
+      align-self: center;
+      flex-shrink: 0;
+      width: 16px; height: 16px;
+      color: var(--rbx);
+      opacity: 0.85;
+    }
+    .search-input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text);
+      padding: 9px 12px;
+      caret-color: var(--rbx);
+      min-width: 0;
+    }
+    .search-input::placeholder { color: var(--muted); }
+    .search-btn {
+      flex-shrink: 0;
+      padding: 9px 20px;
+      background: linear-gradient(135deg, var(--rbx), #005fa3);
+      border: none;
+      border-radius: 999px;
+      color: #fff;
+      font-family: var(--font-hud);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.18s, transform 0.18s, box-shadow 0.18s;
+      box-shadow: 0 2px 14px var(--rbx-dim);
+      white-space: nowrap;
+    }
+    .search-btn:hover {
+      opacity: 0.88;
+      transform: scale(1.04);
+      box-shadow: 0 4px 20px rgba(0,180,255,0.35);
+    }
+    .search-btn:active { transform: scale(0.97); }
+
+    /* ─── Acciones ───────────────────────────────────────── */
+    .actions {
+      display: flex;
+      gap: 0.85rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1.75rem;
+      animation: fadeUp 0.55s 0.4s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.6rem;
+      border-radius: 8px;
+      font-family: var(--font-hud);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.18s, opacity 0.18s, box-shadow 0.18s;
+    }
+    .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+    .btn:active { transform: scale(0.97); }
+
+    .btn--primary {
+      background: linear-gradient(135deg, var(--ff), #c0392b);
+      color: #fff;
+      box-shadow: 0 4px 24px var(--ff-dim);
+    }
+    .btn--primary:hover { box-shadow: 0 6px 32px rgba(255,75,43,0.45); }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid var(--border);
+    }
+    .btn--ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* ─── Links populares ────────────────────────────────── */
+    .popular {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.55s 0.45s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .popular-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+    .popular-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    .popular-links a {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.025);
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+    .popular-links a:hover {
+      color: var(--text);
+      border-color: rgba(255,75,43,0.4);
+      background: rgba(255,75,43,0.07);
+    }
+
+    /* ─── Footer mini ────────────────────────────────────── */
+    .mini-footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-align: center;
+      animation: fadeUp 0.55s 0.5s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .card { padding: 2rem 1.35rem 1.75rem; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .btn { justify-content: center; }
+      .search-btn { padding: 9px 14px; font-size: 0.65rem; }
+      .hud-bar { font-size: 0.65rem; }
+    }
+
+    @media (max-width: 380px) {
+      .error-code { font-size: 5rem; }
+    }
+
+    /* ─── Accesibilidad ──────────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--rbx);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Orbs decorativos de fondo -->
+  <div class="orb orb--ff" aria-hidden="true"></div>
+  <div class="orb orb--rbx" aria-hidden="true"></div>
+
+  <main class="card" role="main">
+
+    <!-- HUD superior -->
+    <div class="hud-bar" aria-hidden="true">
+      <a href="index.html" class="hud-logo">Gaming<em>Zone</em></a>
+      <div class="hud-status">
+        <div class="hud-dot"></div>
+        <span>ERROR_404 :: PAGE_NOT_FOUND</span>
+      </div>
+    </div>
+
+    <!-- Código de error con glitch -->
+    <div class="error-code" aria-label="Error 404">404</div>
+
+    <!-- Título GAME OVER -->
+    <p class="game-over" aria-live="polite">¡ G A M E &nbsp; O V E R !</p>
+
+    <!-- Subtítulo -->
+    <p class="tagline">
+      Esta página fue <strong>eliminada por un Boss final</strong>.<br>
+      Ha sido borrada del mapa, trasladada a otra zona o nunca existió en este servidor.
+    </p>
+
+    <!-- Terminal de diagnóstico -->
+    <div class="terminal" aria-label="Diagnóstico del error">
+      <div class="terminal-header">
+        <div class="t-dot"></div>
+        <div class="t-dot"></div>
+        <div class="t-dot"></div>
+        <span class="terminal-title">gamingzone — diagnóstico</span>
+      </div>
+      <div class="t-line"><span class="t-prompt">▶</span> <span class="t-cmd">ping</span> <span style="color:var(--gold)">pagina-solicitada.html</span></div>
+      <div class="t-line"><span class="t-err">✖ TIMEOUT</span> — destino inalcanzable (código 404)</div>
+      <div class="t-line"><span class="t-prompt">▶</span> <span class="t-cmd">scan</span> <span style="color:var(--gold)">rutas-alternativas</span></div>
+      <div class="t-line"><span class="t-ok">✔ index.html</span> — <span style="color:var(--muted)">disponible</span></div>
+      <div class="t-line"><span class="t-ok">✔ codigos-free-fire-abril-2026.html</span></div>
+      <div class="t-line"><span class="t-warn">⚠ Redirigiendo al cuartel general...</span><span class="t-cursor"></span></div>
+    </div>
+
+    <!-- Buscador -->
+    <div class="search-block">
+      <span class="search-label">// buscar contenido en GamingZone</span>
+      <div class="search-row" role="search">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          type="search"
+          class="search-input"
+          id="search404"
+          placeholder="Ej: códigos Free Fire, Robux gratis…"
+          autocomplete="off"
+          aria-label="Buscar artículos en GamingZone"
+        />
+        <button class="search-btn" onclick="doSearch()" aria-label="Buscar">
+          Buscar
+        </button>
+      </div>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="actions">
+      <a href="index.html" class="btn btn--primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Volver al inicio
+      </a>
+      <button class="btn btn--ghost" onclick="history.back()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Página anterior
+      </button>
+    </div>
+
+    <!-- Links populares -->
+    <nav class="popular" aria-label="Páginas populares">
+      <p class="popular-label">// destinos alternativos</p>
+      <div class="popular-links">
+        <a href="codigos-free-fire-abril-2026.html">🔴 Códigos FF</a>
+        <a href="como-conseguir-robux-gratis-de-forma-segura-2026.html">🔵 Robux Gratis</a>
+        <a href="eventos.html">🎉 Eventos</a>
+        <a href="seguridad.html">🛡️ Seguridad</a>
+        <a href="free-fire-vs-roblox-shooters-comparativa-2026.html">⚔️ Comparativas</a>
+      </div>
+    </nav>
+
+  </main>
+
+  <!-- Footer mínimo -->
+  <p class="mini-footer" aria-hidden="true">
+    © 2026 GamingZone &nbsp;|&nbsp; PLAYER_NOT_FOUND &nbsp;·&nbsp; RESPAWN_IN_PROGRESS
+  </p>
+
+  <script>
+    /* ── Buscador: redirige a index.html con query ── */
+    function doSearch() {
+      var q = document.getElementById('search404').value.trim();
+      if (q) {
+        window.location.href = 'index.html?s=' + encodeURIComponent(q);
+      } else {
+        document.getElementById('search404').focus();
+      }
+    }
+
+    document.getElementById('search404').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
+    });
+
+    /* ── Auto-redirect suave después de 60 s ── */
+    var countdown = 60;
+    var footer = document.querySelector('.mini-footer');
+    var timer = setInterval(function () {
+      countdown--;
+      if (footer) {
+        footer.textContent =
+          '© 2026 GamingZone  |  Redirigiendo al inicio en ' + countdown + ' s…';
+      }
+      if (countdown <= 0) {
+        clearInterval(timer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
