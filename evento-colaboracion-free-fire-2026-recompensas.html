@@ -285,20 +285,42 @@
     }
   </style>
   <script>
-    /* ── Cookie Banner v2 – GamingZone ──────────────────────────────
-       FIX 1: Todo el código corre dentro de DOMContentLoaded,
-               garantizando que los elementos ya existen en el DOM.
-       FIX 2: Si ya hay consentimiento válido, el banner se oculta
-               con display:none de forma INMEDIATA (sin parpadeo).
-       FIX 3: Los onclick solo se asignan si el elemento existe,
-               evitando TypeError en consola.
+    /* ── Cookie Banner v3 – GamingZone ──────────────────────────────
+       FIX 1: DOMContentLoaded garantiza que el DOM esté listo.
+       FIX 2: Condición de página: el banner solo se muestra en
+               la raíz "/" o en "index.html". En cualquier otra
+               ruta se oculta de inmediato con display:none.
+       FIX 3: localStorage con expiración de 30 días. Si el usuario
+               ya aceptó en la Home, no vuelve a ver el banner.
+       FIX 4: Los listeners se asignan solo si los botones existen,
+               eliminando cualquier TypeError en consola.
     ─────────────────────────────────────────────────────────────── */
     document.addEventListener('DOMContentLoaded', function () {
-      var STORAGE_KEY  = 'cookieConsent';
-      var DAYS_VALID   = 30;
-      var MS_PER_DAY   = 86400000;
 
-      /* ── Helpers ── */
+      var STORAGE_KEY = 'cookieConsent';
+      var DAYS_VALID  = 30;
+      var MS_PER_DAY  = 86400000;
+      var banner      = document.getElementById('cookieBanner');
+
+      /* ── FIX 2: Detectar si estamos en la página principal ── */
+      function isHomePage() {
+        var path = window.location.pathname;
+        /* Coincide con: "/", "/index.html", o rutas tipo "/carpeta/" */
+        return (
+          path === '/' ||
+          path === '' ||
+          path.endsWith('/index.html') ||
+          path.endsWith('/index.htm')
+        );
+      }
+
+      /* Si NO es la Home → ocultar banner y salir */
+      if (!isHomePage()) {
+        if (banner) banner.style.display = 'none';
+        return;
+      }
+
+      /* ── FIX 3: Lógica de persistencia con localStorage ── */
       function hasValidConsent() {
         try {
           var raw = localStorage.getItem(STORAGE_KEY);
@@ -306,18 +328,21 @@
           var data = JSON.parse(raw);
           return (Date.now() - data.ts) < (DAYS_VALID * MS_PER_DAY);
         } catch (e) {
-          return false;   // JSON corrupto → tratar como sin consentimiento
+          return false; /* JSON corrupto → tratar como sin consentimiento */
         }
       }
 
       function saveConsent(type) {
         try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ type: type, ts: Date.now() }));
-        } catch (e) { /* localStorage bloqueado (modo privado estricto) */ }
+          localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify({ type: type, ts: Date.now() })
+          );
+        } catch (e) { /* localStorage bloqueado en modo privado estricto */ }
       }
 
+      /* ── Ocultar banner: instantáneo o con animación ── */
       function hideBanner(animate) {
-        var banner = document.getElementById('cookieBanner');
         if (!banner) return;
         if (animate) {
           banner.style.transition = 'transform .35s ease, opacity .35s ease';
@@ -325,18 +350,17 @@
           banner.style.opacity    = '0';
           setTimeout(function () { banner.style.display = 'none'; }, 360);
         } else {
-          /* Ocultar instantáneo: evita el parpadeo en visitas recurrentes */
-          banner.style.display = 'none';
+          banner.style.display = 'none'; /* Sin parpadeo en visitas recurrentes */
         }
       }
 
-      /* ── Lógica principal ── */
+      /* ── Flujo principal (solo llega aquí si es la Home) ── */
       if (hasValidConsent()) {
-        hideBanner(false);   // ya aceptó → ocultar sin animación
+        hideBanner(false); /* Ya aceptó → ocultar sin animación */
         return;
       }
 
-      /* Asignar eventos solo si los botones existen en el DOM */
+      /* ── FIX 4: Asignar eventos solo si los botones existen ── */
       var btnAccept    = document.getElementById('cookieAccept');
       var btnEssential = document.getElementById('cookieEssential');
 
@@ -353,7 +377,8 @@
           hideBanner(true);
         });
       }
-    });
+
+    }); /* fin DOMContentLoaded */
   </script>
   <!-- ===== FIN BANNER DE COOKIES ===== -->
 
