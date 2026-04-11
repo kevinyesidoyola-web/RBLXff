@@ -337,6 +337,7 @@
     </div>
   </footer>
 
+  <!-- ── Script menú hamburguesa ── -->
   <script>
     (function () {
       var toggle = document.querySelector('.nav-toggle');
@@ -350,6 +351,122 @@
       });
     })();
   </script>
+
+  <!-- ===== BANNER DE COOKIES – GamingZone v3 ===== -->
+  <div id="cookieBanner" role="dialog" aria-label="Aviso de cookies" aria-live="polite" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:#0f1115;border-top:3px solid #ff4b2b;padding:14px 28px;box-sizing:border-box;font-family:'Exo 2',sans-serif;">
+    <p style="color:#c8ccd4;font-size:14px;line-height:1.65;margin:0;flex:1;min-width:240px;">
+      🍪 <strong style="color:#fff;font-weight:700;">Aviso de cookies.</strong>
+      Usamos cookies propias y de Google AdSense para publicidad relevante.
+      Al navegar aceptas su uso según nuestra
+      <a href="politica-de-privacidad.html" style="color:#ff4b2b;text-decoration:underline;">Política de Privacidad</a>.
+    </p>
+    <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+      <button id="cookieEssential" style="background:transparent;border:1.5px solid rgba(200,204,212,.35);color:#c8ccd4;padding:10px 20px;border-radius:8px;font-family:'Exo 2',sans-serif;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;" onmouseover="this.style.borderColor='rgba(200,204,212,.7)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(200,204,212,.35)';this.style.color='#c8ccd4'">Solo esenciales</button>
+      <button id="cookieAccept" style="background:#ff4b2b;border:1.5px solid #ff4b2b;color:#fff;padding:10px 20px;border-radius:8px;font-family:'Exo 2',sans-serif;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;" onmouseover="this.style.background='#e03a1e'" onmouseout="this.style.background='#ff4b2b'">Aceptar todo</button>
+    </div>
+  </div>
+
+  <style>
+    @media(max-width:600px){
+      #cookieBanner{flex-direction:column;align-items:flex-start;padding:16px 18px;gap:14px;}
+      #cookieBanner>div:last-child{width:100%;}
+      #cookieBanner button{width:100%;text-align:center;font-size:14px;padding:12px 10px;}
+    }
+  </style>
+
+  <script>
+    /* ── Cookie Banner v3 – GamingZone ──────────────────────────────
+       FIX 1: DOMContentLoaded garantiza que el DOM esté listo.
+       FIX 2: Condición de página: solo visible en "/" o "index.html".
+               En cualquier otra ruta → display:none inmediato.
+       FIX 3: localStorage 30 días. Aceptado en Home = no vuelve.
+       FIX 4: addEventListener solo si el botón existe en el DOM.
+    ─────────────────────────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', function () {
+
+      var STORAGE_KEY = 'cookieConsent';
+      var DAYS_VALID  = 30;
+      var MS_PER_DAY  = 86400000;
+      var banner      = document.getElementById('cookieBanner');
+
+      /* ── FIX 2: ¿Estamos en la página principal? ── */
+      function isHomePage() {
+        var path = window.location.pathname;
+        return (
+          path === '/'               ||
+          path === ''                ||
+          path.endsWith('/index.html') ||
+          path.endsWith('/index.htm')
+        );
+      }
+
+      /* Si NO es la Home → ocultar y salir sin ejecutar nada más */
+      if (!isHomePage()) {
+        if (banner) banner.style.display = 'none';
+        return;
+      }
+
+      /* ── FIX 3: Lógica de persistencia ── */
+      function hasValidConsent() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return false;
+          var data = JSON.parse(raw);
+          return (Date.now() - data.ts) < (DAYS_VALID * MS_PER_DAY);
+        } catch (e) {
+          return false; /* JSON corrupto → mostrar banner */
+        }
+      }
+
+      function saveConsent(type) {
+        try {
+          localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify({ type: type, ts: Date.now() })
+          );
+        } catch (e) { /* localStorage bloqueado en modo privado */ }
+      }
+
+      /* ── Ocultar: instantáneo (visita recurrente) o animado (clic) ── */
+      function hideBanner(animate) {
+        if (!banner) return;
+        if (animate) {
+          banner.style.transition = 'transform .35s ease, opacity .35s ease';
+          banner.style.transform  = 'translateY(100%)';
+          banner.style.opacity    = '0';
+          setTimeout(function () { banner.style.display = 'none'; }, 360);
+        } else {
+          banner.style.display = 'none'; /* Sin parpadeo en recurrentes */
+        }
+      }
+
+      /* ── Flujo principal (solo si es la Home) ── */
+      if (hasValidConsent()) {
+        hideBanner(false);
+        return;
+      }
+
+      /* ── FIX 4: Eventos solo si los botones existen ── */
+      var btnAccept    = document.getElementById('cookieAccept');
+      var btnEssential = document.getElementById('cookieEssential');
+
+      if (btnAccept) {
+        btnAccept.addEventListener('click', function () {
+          saveConsent('all');
+          hideBanner(true);
+        });
+      }
+
+      if (btnEssential) {
+        btnEssential.addEventListener('click', function () {
+          saveConsent('essential');
+          hideBanner(true);
+        });
+      }
+
+    }); /* fin DOMContentLoaded */
+  </script>
+  <!-- ===== FIN BANNER DE COOKIES ===== -->
 
 </body>
 </html>
